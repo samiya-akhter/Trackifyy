@@ -68,31 +68,45 @@ enqueueStorageOperation((resolve) => {
         console.log("[Trackifyy] Initializing. Stored sessionStartTime:", storedStart, "lastTickTime:", storedLastTick);
 
         if (storedStart && storedLastTick) {
-            const elapsed = Math.floor((storedLastTick - storedStart) / 1000);
-            if (elapsed > 0) {
-                console.log("[Trackifyy] Recovering crashed/interrupted session. Elapsed seconds:", elapsed);
-                total += elapsed;
-                
-                // Split segments by midnight
-                let current = storedStart;
-                const now = storedLastTick;
-                while (current < now) {
-                    const currentDateObj = new Date(current);
-                    const nextDateObj = new Date(currentDateObj.getFullYear(), currentDateObj.getMonth(), currentDateObj.getDate() + 1);
-                    const nextMidnight = nextDateObj.getTime();
+            const timeSinceLastTick = Date.now() - storedLastTick;
+            if (timeSinceLastTick <= 15000) {
+                // Service worker just restarted during an active session. Resume it!
+                currentSessionStart = storedStart;
+                lastTickTime = storedLastTick;
+                lastSavedTickTime = storedLastTick;
+                isInitialized = true;
+                console.log("[Trackifyy] Initialization completed. Active session resumed.");
+                startCheckTimer();
+                resolve();
+                return;
+            } else {
+                // Recover crashed/interrupted session
+                const elapsed = Math.floor((storedLastTick - storedStart) / 1000);
+                if (elapsed > 0) {
+                    console.log("[Trackifyy] Recovering crashed/interrupted session. Elapsed seconds:", elapsed);
+                    total += elapsed;
+                    
+                    // Split segments by midnight
+                    let current = storedStart;
+                    const now = storedLastTick;
+                    while (current < now) {
+                        const currentDateObj = new Date(current);
+                        const nextDateObj = new Date(currentDateObj.getFullYear(), currentDateObj.getMonth(), currentDateObj.getDate() + 1);
+                        const nextMidnight = nextDateObj.getTime();
 
-                    const endOfSegment = Math.min(nextMidnight, now);
-                    const segmentSeconds = Math.floor((endOfSegment - current) / 1000);
+                        const endOfSegment = Math.min(nextMidnight, now);
+                        const segmentSeconds = Math.floor((endOfSegment - current) / 1000);
 
-                    if (segmentSeconds > 0) {
-                        const year = currentDateObj.getFullYear();
-                        const month = String(currentDateObj.getMonth() + 1).padStart(2, '0');
-                        const day = String(currentDateObj.getDate()).padStart(2, '0');
-                        const dateStr = `${year}-${month}-${day}`;
+                        if (segmentSeconds > 0) {
+                            const year = currentDateObj.getFullYear();
+                            const month = String(currentDateObj.getMonth() + 1).padStart(2, '0');
+                            const day = String(currentDateObj.getDate()).padStart(2, '0');
+                            const dateStr = `${year}-${month}-${day}`;
 
-                        daily[dateStr] = (daily[dateStr] || 0) + segmentSeconds;
+                            daily[dateStr] = (daily[dateStr] || 0) + segmentSeconds;
+                        }
+                        current = nextMidnight;
                     }
-                    current = nextMidnight;
                 }
             }
         }

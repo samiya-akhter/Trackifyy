@@ -1,4 +1,45 @@
+// Safe mock for chrome APIs when previewing in standard browser tabs or other environments
+if (typeof chrome === 'undefined' || !chrome.storage || !chrome.storage.local) {
+    window.chrome = {
+        runtime: {
+            lastError: null
+        },
+        tabs: {
+            create: (details) => {
+                window.open(details.url, '_blank');
+            }
+        },
+        storage: {
+            local: {
+                get: (keys, callback) => {
+                    const res = {};
+                    const isArray = Array.isArray(keys);
+                    const keysArr = isArray ? keys : [keys];
+                    keysArr.forEach(k => {
+                        try {
+                            const val = localStorage.getItem(k);
+                            res[k] = val ? JSON.parse(val) : undefined;
+                        } catch (e) {
+                            res[k] = undefined;
+                        }
+                    });
+                    setTimeout(() => callback(res), 0);
+                },
+                set: (obj, callback) => {
+                    Object.keys(obj).forEach(k => {
+                        try {
+                            localStorage.setItem(k, JSON.stringify(obj[k]));
+                        } catch (e) {}
+                    });
+                    if (callback) setTimeout(callback, 0);
+                }
+            }
+        }
+    };
+}
+
 const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
 
 function getTodayString() {
     // Normal local date (midnight rollover)
