@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trackifyy</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <!-- Glowing Blue Codeforces Logo SVG -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="cf-logo-svg">
+                    <!-- 3 bars in shades of neon blue/cyan -->
+                    <rect x="2" y="8" width="4" height="12" rx="1" fill="#00f0ff" class="bar-cyan"/>
+                    <rect x="10" y="3" width="4" height="17" rx="1" fill="#0070f3" class="bar-blue"/>
+                    <rect x="18" y="11" width="4" height="9" rx="1" fill="#7cdfff" class="bar-light-blue"/>
+                </svg>
+                <span class="logo-text">TRACKI<span class="accent-text">FYY</span></span>
+            </div>
+            <div class="status-badge standby" id="statusBadge">
+                <span class="status-dot"></span>
+                <span class="status-text" id="statusText">STANDBY</span>
+            </div>
+        </header>
+
+        <!-- Floating Tabs -->
+        <div class="tab-container">
+            <button class="tab-btn active" id="tabTracker">Tracker</button>
+            <button class="tab-btn" id="tabStopwatch">Stopwatch</button>
+        </div>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Tracker Content -->
+            <div id="trackerContent" class="tab-content">
+                <!-- Timer Card (Today's Time) -->
+                <div class="timer-card">
+                    <div class="card-label">TODAY'S TIME</div>
+                    <div class="digital-clock">
+                        <span class="time-num" id="hours">00</span>
+                        <span class="time-separator">:</span>
+                        <span class="time-num" id="minutes">00</span>
+                        <span class="time-separator">:</span>
+                        <span class="time-num" id="seconds">00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Max: <strong id="maxDayTime">0.00h</strong> | 🔥 <strong id="currStreak">0</strong></span>
+                    </div>
+                </div>
+
+                <!-- Everyday History (Daily Stats Chart) -->
+                <div class="history-card">
+                    <div class="history-header">
+                        <span class="card-label">7-DAY HISTORY</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- Chart View -->
+                        <div class="chart-container" id="chartContainer"></div>
+                    </div>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="actions">
+                    <a href="https://codeforces.com" target="_blank" id="cfBtn" class="btn btn-primary">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        Open CF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stopwatch Content -->
+            <div id="stopwatchContent" class="tab-content hidden">
+                <!-- Stopwatch Card -->
+                <div class="timer-card stopwatch-card">
+                    <div class="card-label">STOPWATCH</div>
+                    <div class="digital-clock stopwatch-clock">
+                        <span class="time-num" id="swHours">00</span>
+                        <span class="time-separator">:</span>
+                        <span class="time-num" id="swMinutes">00</span>
+                        <span class="time-separator">:</span>
+                        <span class="time-num" id="swSeconds">00</span>
+                    </div>
+                    <div class="stopwatch-status-row">
+                        <span class="stopwatch-status" id="swStatus">READY</span>
+                    </div>
+                </div>
+
+                <!-- Stopwatch Controls -->
+                <div class="stopwatch-controls">
+                    <button id="swStartPauseBtn" class="btn btn-orange">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" id="swPlayIcon"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" id="swPauseIcon" class="hidden"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                        <span id="swStartPauseText">START</span>
+                    </button>
+                    <button id="swLapBtn" class="btn btn-orange-outline">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        LAP
+                    </button>
+                    <button id="swResetBtn" class="btn btn-orange-danger">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        RESET
+                    </button>
+                </div>
+
+                <!-- Lap Container -->
+                <div class="lap-container" id="lapContainer"></div>
+            </div>
+        </main>
+
+        <!-- Footer / Decorative credit -->
+        <footer class="app-footer-decor">
+            <div class="footer-credit">@pandame</div>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
