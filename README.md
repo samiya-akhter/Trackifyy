@@ -23,9 +23,9 @@
 ### 📸 Preview / Screenshots
 
 <p align="center">
-  <img src="screenshot/Screenshot%202026-06-02%20065612.png" alt="Trackifyy Dashboard" width="375" />
+  <img src="screenshots/dashboard.png" alt="Trackifyy Dashboard" width="375" />
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="screenshot/Screenshot%202026-06-02%20070240.png" alt="Trackifyy Stopwatch" width="375" />
+  <img src="screenshots/stopwatch.png" alt="Trackifyy Stopwatch" width="375" />
 </p>
 
 ---
