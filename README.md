@@ -122,5 +122,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <p align="center">
-  <em>Made with 💙 for competitive programmers by <a href="https://github.com/samiya-akhter">@samiya-akhter</a> and contributors.</em>
+  <em>Made with</em>🫶<em> for competitive programmers by <a href="https://github.com/samiya-akhter">@samiya-akhter</a></em>
 </p>
