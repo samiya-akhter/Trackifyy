@@ -27,18 +27,19 @@
 ## 📂 Project Structure
 
 ```text
-cf-time-tracker/
-├── manifest.json         # Chrome Extension Manifest (V3)
-├── background.js         # Service worker managing state, tracking active tabs, and timers
-├── content.js            # Light scripts interacting with Codeforces pages
-├── popup.html            # Primary UI structure (Tracker dashboard and Stopwatch)
-├── popup.css             # Cyber-neon styling, layout system, and animations
-├── popup.js              # UI logic, chart rendering, stopwatch controls, and state management
-├── logo.png              # Extension logo
-├── icon16.png            # Extension icons (various sizes)
-├── icon32.png            
-├── icon48.png            
-├── icon128.png           
+Trackifyy/
+├── Trackifyy/            # Extension source files folder
+│   ├── manifest.json     # Chrome Extension Manifest (V3)
+│   ├── background.js     # Service worker managing state, tracking active tabs, and timers
+│   ├── content.js        # Light scripts interacting with Codeforces pages
+│   ├── popup.html        # Primary UI structure (Tracker dashboard and Stopwatch)
+│   ├── popup.css         # Cyber-neon styling, layout system, and animations
+│   ├── popup.js          # UI logic, chart rendering, stopwatch controls, and state management
+│   ├── logo.png          # Extension logo
+│   ├── icon16.png        # Extension icons (various sizes)
+│   ├── icon32.png            
+│   ├── icon48.png            
+│   └── icon128.png           
 ├── .gitignore            # Excludes temporary and editor files
 └── LICENSE               # MIT License
 ```
@@ -52,7 +53,7 @@ Follow these simple steps to load **Trackifyy** into your Google Chrome browser:
 1. **Download / Clone the Repository**
    Download this repository as a ZIP file and extract it, or clone it locally:
    ```bash
-   git clone https://github.com/your-username/cf-time-tracker.git
+   git clone https://github.com/samiya-akhter/Trackifyy.git
    ```
 
 2. **Open Chrome Extensions Page**
@@ -63,7 +64,7 @@ Follow these simple steps to load **Trackifyy** into your Google Chrome browser:
 
 4. **Load Unpacked Extension**
    * Click the **Load unpacked** button in the top-left corner.
-   * Select the extracted folder (the one containing `manifest.json`).
+   * Select the `Trackifyy` subfolder inside the cloned repository folder (the one containing `manifest.json`).
 
 5. **Pin Trackifyy**
    Click the puzzle icon (Extensions) in your Chrome toolbar and pin **Trackifyy** for easy access!
