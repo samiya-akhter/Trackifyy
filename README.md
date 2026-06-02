@@ -20,6 +20,14 @@
 
 **Trackifyy** helps you stay disciplined and track your practice hours by automatically logging the time you spend actively solving problems on **Codeforces**. It features an elegant neon-themed dashboard, a built-in 7-day history chart, streak tracking, and an interactive stopwatch with lap support to time your runs and check your problem-solving speed.
 
+### 📸 Preview / Screenshots
+
+<p align="center">
+  <img src="screenshot/Screenshot%202026-06-02%20065612.png" alt="Trackifyy Dashboard" width="375" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="screenshot/Screenshot%202026-06-02%20070240.png" alt="Trackifyy Stopwatch" width="375" />
+</p>
+
 ---
 
 ## ✨ Features
